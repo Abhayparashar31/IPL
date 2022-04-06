@@ -184,7 +184,7 @@ def app():
             #plt.title(f'Runs Given Against Different Teams For {player}')
             plt.xlabel('Teams')
             plt.ylabel('Runs')
-            plt.xticks(fontsize=12)
+            plt.xticks(fontsize=9)
             
 
             st.pyplot(fig,transparent=True)
