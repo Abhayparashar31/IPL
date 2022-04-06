@@ -41,7 +41,7 @@ def app():
             ax = sns.barplot(data=player_runs_against_teams,x='bowling_team',y='total_runs')
             ax.bar_label(ax.containers[0])
 
-            plt.xticks(fontsize=10)
+            plt.xticks(fontsize=7)
             
             plt.xlabel('Teams')
             plt.ylabel('Runs')
