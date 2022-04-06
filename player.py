@@ -64,7 +64,7 @@ def app():
             plt.title(f'{player} Performance Against Different Bowlers (Top 15)')
             plt.xlabel('Bewlers')
             plt.ylabel('Runs')
-            plt.xticks(fontsize=12)
+            plt.xticks(fontsize=10)
             st.pyplot(fig,transparent=True)
             st.write('---')            
         #############################################################
