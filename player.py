@@ -109,7 +109,7 @@ def app():
         
 
         else:
-            st.write(f'OOPS! No Data Found For Batting Carrer of {player} in IPL')
+            st. markdown(f"<h5 style='text-align: center; color: red;'> OOPS! No Data Found For Batting Carrer of {player} in IPL') </h5>", unsafe_allow_html=True)
     #############################################################   
     ###### Player as bowler ####################################
     #############################################################   
@@ -121,16 +121,12 @@ def app():
             tr = player_df_bowl['total_runs'].sum()
             st. markdown(f"<h5 style='text-align: center; color: white;'> Runs Given Against Different Players For {player} (Top 15)  </h5>", unsafe_allow_html=True)
 
-
-
-            st.write(f'#### > Total Runs Given By {player} Are : {tr}')
-
             ##### Runs Given Against Different Players
             player_df_bowl_players = player_df_bowl.groupby('batsman')['total_runs'].sum().reset_index().sort_values(by='total_runs',ascending=False)[:15]
             fig = plt.figure(figsize=(20,5))
             ax = sns.barplot(data=player_df_bowl_players,x='batsman',y='total_runs')
             ax.bar_label(ax.containers[0])
-            plt.title(f'Runs Given Against Different Players For {player} (Top 15) ')
+            #plt.title(f'Runs Given Against Different Players For {player} (Top 15) ')
             plt.xlabel('Players')
             plt.ylabel('Runs')
             plt.xticks(fontsize=12)
@@ -150,7 +146,7 @@ def app():
             for x,y in zip(player_df_bowl_overs['over'],player_df_bowl_overs['total_runs']):
                 plt.text(x = x, y = y, s = '{:.0f}'.format(y), color='white').set_backgroundcolor('purple')
             ax.set_xticks(range(0,21,1))
-            ax.set_title(f'Total Runs Given By {player} in different overs')
+            #ax.set_title(f'Total Runs Given By {player} in different overs')
             st.pyplot(fig,transparent=True)
             st.write('---')
             
@@ -170,7 +166,7 @@ def app():
             for x,y in zip(player_df_bowl_overs_n['over'],player_df_bowl_overs_n['count']):
                 plt.text(x = x, y = y, s = '{:.2f}'.format(y), color='white').set_backgroundcolor('purple')
             ax.set_xticks(range(0,21,1))
-            ax.set_title(f'Overs Thrown By {player}')
+            #ax.set_title(f'Overs Thrown By {player}')
             st.pyplot(fig,transparent=True)
             st.write('---')
             st. markdown(f"<h5 style='text-align: center; color: white;'> Runs Given Against Different Teams For {player} </h5>", unsafe_allow_html=True)
@@ -185,7 +181,7 @@ def app():
             fig = plt.figure(figsize=(20,5))
             ax = sns.barplot(data=player_df_bowl_teams,x='batting_team',y='total_runs')
             ax.bar_label(ax.containers[0])
-            plt.title(f'Runs Given Against Different Teams For {player}')
+            #plt.title(f'Runs Given Against Different Teams For {player}')
             plt.xlabel('Teams')
             plt.ylabel('Runs')
             plt.xticks(fontsize=12)
@@ -195,7 +191,8 @@ def app():
             st.write('---')
             
         else:
-            st.write(f'OOPS! No Data Found For Bowling Carrer of {player} in IPL')
+            st. markdown(f"<h5 style='text-align: center; color: red;'> OOPS! No Data Found For Bowling Carrer of {player} in IPL') </h5>", unsafe_allow_html=True)
+
         st.write('---')
         st. markdown(f"<h6 style='text-align: center; color: white;'> “A wise man learns by the mistakes of others, a fool by own.”– Adam Gilchrist </h6>", unsafe_allow_html=True)
             
