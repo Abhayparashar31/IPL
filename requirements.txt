@@ -5,3 +5,5 @@ scikit-learn
 scipy==1.5.4
 matplotlib==3.5.1
 seaborn==0.11.2
+click==8.0
+
