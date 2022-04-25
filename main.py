@@ -8,6 +8,7 @@ import player
 import team
 
 import streamlit as st
+st.set_page_config(layout="wide")
 
 PAGES = {
     "HOME":home,
