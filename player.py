@@ -1,9 +1,11 @@
 import matplotlib.pyplot as plt
 import seaborn as sns
-import streamlit as st
 import pandas as pd
 
 import ipl_eda
+
+import streamlit as st
+st.set_page_config(layout="wide")
 
 
 
