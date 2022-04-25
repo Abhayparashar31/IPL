@@ -5,6 +5,7 @@ import pandas as pd
 
 import ipl_eda
 import team_vs_team
+st.set_page_config(layout="wide")
 
 def app():
     matches = pd.read_csv('matches.csv')
