@@ -1,7 +1,7 @@
 import streamlit as st
 import pickle
 import pandas as pd
-st.set_page_config(layout="wide")
+
 
 def app():
     st.title(''' IPL FIRST INNINGS SCORE PREDICTION ''')
