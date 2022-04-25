@@ -4,7 +4,7 @@ import streamlit as st
 import pandas as pd
 
 import ipl_eda
-
+st.set_page_config(layout="wide")
 
 def gen_accr(t1,t2):
     ### Accronym
