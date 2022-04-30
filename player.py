@@ -111,7 +111,7 @@ def app():
         
 
         else:
-            st. markdown(f"<h5 style='text-align: center; color: red;'> OOPS! No Data Found For Batting Carrer of {player} in IPL') </h5>", unsafe_allow_html=True)
+            st. markdown(f"<h5 style='text-align: center; color: red;'> OOPS! No Data Found For Batting Carrer of {player} in IPL </h5>", unsafe_allow_html=True)
     #############################################################   
     ###### Player as bowler ####################################
     #############################################################   
@@ -193,7 +193,7 @@ def app():
             st.write('---')
             
         else:
-            st. markdown(f"<h5 style='text-align: center; color: red;'> OOPS! No Data Found For Bowling Carrer of {player} in IPL') </h5>", unsafe_allow_html=True)
+            st. markdown(f"<h5 style='text-align: center; color: red;'> OOPS! No Data Found For Bowling Carrer of {player} in IPL </h5>", unsafe_allow_html=True)
 
         st.write('---')
         st. markdown(f"<h6 style='text-align: center; color: white;'> “A wise man learns by the mistakes of others, a fool by own.”– Adam Gilchrist </h6>", unsafe_allow_html=True)
