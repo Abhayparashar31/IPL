@@ -13,7 +13,7 @@ def app():
     st.write(''' #### 6. Team Record Analysis.  ''')
     st.write(''' #### 7. Player Career Analysis As Batsman and Bowler.  ''')
     
-    
+    ## Creator Info
     st.write(''' \n''')
     st.write('---')
     st.subheader(''' Streamlit Web App Developed By Abhay Parashar ''') 
