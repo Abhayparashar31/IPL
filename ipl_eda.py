@@ -1,8 +1,10 @@
+from turtle import title
 import matplotlib.pyplot as plt
 import seaborn as sns
 import streamlit as st
-
 import pandas as pd
+import plotly
+import plotly.express as px
 
 
 def latest_teams(df,cols):
@@ -45,54 +47,67 @@ def app():
 ################## MATCHES PER SEASON ###########################
 #################################################################
     with st.expander(" 1) Matches Per Season (2008-2019) "):
-        season = matches['Season'].apply(lambda x:x.split('-')[1]).astype(int)
-        fig = plt.figure(figsize=(12, 8))
-        plt.rcParams.update({'text.color': "white",'axes.labelcolor': "white",'xtick.color':'white', 'ytick.color':'white'})
+        #season = matches['Season'].apply(lambda x:x.split('-')[1]).astype(int)
+        #fig = plt.figure(figsize=(12, 8))
+        #plt.rcParams.update({'text.color': "white",'axes.labelcolor': "white",'xtick.color':'white', 'ytick.color':'white'})
 
-        ax = sns.countplot(y = season,palette='deep',order=season.value_counts().index)
-        ax.bar_label(ax.containers[0])
-        plt.title('Matches Per Season (2008-2019)')
-        plt.xlabel(f'Average Matches Per Season Are: {int(season.value_counts().mean())}')
-        st.pyplot(fig,transparent=True)
+        #ax = sns.countplot(y = season,palette='deep',order=season.value_counts().index)
+        #ax.bar_label(ax.containers[0])
+        #plt.title('Matches Per Season (2008-2019)')
+        #plt.xlabel(f'Average Matches Per Season Are: {int(season.value_counts().mean())}')
+        #st.pyplot(fig,transparent=True)
+
+        fig = px.histogram(data_frame=matches, x="Season",title='Matches Per Season (2008-2019)')
+        st.plotly_chart(fig,transparent=True,use_container_width=True)
+
 
         if st.checkbox(label="View Code",key=0):
             st.code('''
-season = matches['Season'].apply(lambda x:x.split('-')[1]).astype(int) 
-fig = plt.figure(figsize=(12, 8))
-ax = sns.countplot(y = season,palette='deep',order=season.value_counts().index)
-ax.bar_label(ax.containers[0])
-plt.title('Matches Per Season (2008-2019)')
-plt.xlabel(f'Average Matches Per Season Are: {int(season.value_counts().mean())}')
-plt.show();
+fig = px.histogram(matches, x="Season",title='Matches Per Season (2008-2019)')
+st.plotly_chart(fig,transparent=True,use_container_width=True)
             ''',language='python')
+
+
+        ### USING PLOTLY
+        
+
         
 
 ####################################################################
 ########## Most Man of The Match Award Received By Players #########
 ###################################################################
     with st.expander(" 2) Player Of The Match Award Received By Players "):
-        fig = plt.figure(figsize=(15,8))
-        plt.rcParams.update({'text.color': "white",'axes.labelcolor': "white",'xtick.color':'white', 'ytick.color':'white'})
-        ax = sns.countplot('player_of_match', data=matches,order=matches['player_of_match'].value_counts().iloc[:20].index)
-        ax.bar_label(ax.containers[0])
-        font = {"size":18}
-        plt.xticks(rotation='vertical')
-        plt.title("Player of The Match Award Distribution Between Players",fontdict=font)
-        plt.xlabel("Players",fontdict=font)
-        plt.ylabel("Number of Times Player Received Award",fontdict=font)
-        st.pyplot(fig,transparent=True)
+        # fig = plt.figure(figsize=(15,8))
+        # plt.rcParams.update({'text.color': "white",'axes.labelcolor': "white",'xtick.color':'white', 'ytick.color':'white'})
+        # ax = sns.countplot('player_of_match', data=matches,order=matches['player_of_match'].value_counts().iloc[:20].index)
+        # ax.bar_label(ax.containers[0])
+        # font = {"size":18}
+        # plt.xticks(rotation='vertical')
+        # plt.title("Player of The Match Award Distribution Between Players",fontdict=font)
+        # plt.xlabel("Players",fontdict=font)
+        # plt.ylabel("Number of Times Player Received Award",fontdict=font)
+        # st.pyplot(fig,transparent=True)
+
+
+        top_20 = matches['player_of_match'].value_counts().iloc[:20].sort_values()
+        fig = px.bar(y=top_20.index,x=top_20.values,
+        labels={
+            'y':'Player Name',
+            'x':'Count'
+        })
+        st.plotly_chart(fig,transparent=True,use_container_width=True)
+
 
         if st.checkbox(label="View Code",key=1):
             st.code('''
-fig = plt.figure(figsize=(15,8))
-ax = sns.countplot('player_of_match', data=matches,order=matches['player_of_match'].value_counts().iloc[:20].index)
-ax.bar_label(ax.containers[0])
-font = {"size":18}
-plt.xticks(rotation='vertical')
-plt.title("Player of The Match Award Distribution Between Players",fontdict=font)
-plt.xlabel("Players",fontdict=font)
-plt.ylabel("Number of Times Player Received Award",fontdict=font)
-plt.show();
+top_20 = matches['player_of_match'].value_counts().iloc[:20].sort_values()
+fig = px.bar(y=top_20.index,x=top_20.values,
+labels={
+    'y':'Player Name',
+    'x':'Count'
+})
+st.plotly_chart(fig,transparent=True,use_container_width=True)
+
             ''',language='python')
         
 
@@ -100,29 +115,40 @@ plt.show();
 ################ Venues With Most Matches ################################
 ##########################################################################
     with st.expander("3) Top 20 Venues With Most Matches"):
-        fig = plt.figure(figsize=(15,8))
-        plt.style.use('default')
-        plt.rcParams.update({'text.color': "white",'axes.labelcolor': "white",'xtick.color':'white', 'ytick.color':'white'})
-        ax = sns.countplot('venue', data=matches,order=matches['venue'].value_counts().iloc[:20].index)
-        ax.bar_label(ax.containers[0])
-        font = {"size":15}
-        plt.xticks(rotation='vertical')
-        plt.title("Venues With Most Matches",fontdict=font)
-        plt.xlabel("Venue Name",fontdict=font)
-        plt.ylabel("Number of Matches",fontdict=font)
-        st.pyplot(fig,transparent=True)
+        # fig = plt.figure(figsize=(15,8))
+        # plt.style.use('default')
+        # plt.rcParams.update({'text.color': "white",'axes.labelcolor': "white",'xtick.color':'white', 'ytick.color':'white'})
+        # ax = sns.countplot('venue', data=matches,order=matches['venue'].value_counts().iloc[:20].index)
+        # ax.bar_label(ax.containers[0])
+        # font = {"size":15}
+        # plt.xticks(rotation='vertical')
+        # plt.title("Venues With Most Matches",fontdict=font)
+        # plt.xlabel("Venue Name",fontdict=font)
+        # plt.ylabel("Number of Matches",fontdict=font)
+        # st.pyplot(fig,transparent=True)
+
+        top_20 = matches['venue'].value_counts().iloc[:20]
+        fig = px.bar(x=top_20.index,y=top_20.values,
+        labels={
+            'x':'Venue',
+            'y':'Matches Count'
+        })
+        st.plotly_chart(fig,transparent=True,use_container_width=True)
+
+
+
 
         if st.checkbox(label="View Code",key=2):
             st.code(''' 
-fig = plt.figure(figsize=(15,8))
-ax = sns.countplot('venue', data=matches,order=matches['venue'].value_counts().iloc[:20].index)
-ax.bar_label(ax.containers[0])
-font = {"size":15}
-plt.xticks(rotation='vertical')
-plt.title("Venues With Most Matches",fontdict=font)
-plt.xlabel("Venue Name",fontdict=font)
-plt.ylabel("Number of Matches",fontdict=font)
-plt.show();
+top_20 = matches['venue'].value_counts().iloc[:20]
+fig = px.bar(x=top_20.index,y=top_20.values,
+labels={
+    'x':'Venue',
+    'y':'Matches Count'
+})
+st.plotly_chart(fig,transparent=True,use_container_width=True)
+
+
             ''',language='python')
         
     
@@ -131,62 +157,74 @@ plt.show();
 ###########################################################################
     
     with st.expander('4) Team With Most Match Wins'):
-        fig = plt.figure(figsize=(15,8))
+        # fig = plt.figure(figsize=(15,8))
                 
-        plt.rcParams.update({'text.color': "white",'axes.labelcolor': "white",'xtick.color':'white', 'ytick.color':'white'})
+        # plt.rcParams.update({'text.color': "white",'axes.labelcolor': "white",'xtick.color':'white', 'ytick.color':'white'})
         
-        ax = sns.countplot(y='winner', data=matches_lt,order=matches_lt['winner'].value_counts().index)
-        ax.bar_label(ax.containers[0])
-        font = {"size":15}
-        plt.xticks(rotation='vertical',fontsize=10)
-        plt.title("Match Winners",fontdict=font)
-        plt.xlabel("Team Name",fontdict=font)
-        plt.ylabel("Match Win Count",fontdict=font)
-        st.pyplot(fig,transparent=True)
+        # ax = sns.countplot(y='winner', data=matches_lt,order=matches_lt['winner'].value_counts().index)
+        # ax.bar_label(ax.containers[0])
+        # font = {"size":15}
+        # plt.xticks(rotation='vertical',fontsize=10)
+        # plt.title("Match Winners",fontdict=font)
+        # plt.xlabel("Team Name",fontdict=font)
+        # plt.ylabel("Match Win Count",fontdict=font)
+        # st.pyplot(fig,transparent=True)
+        
+        top_20 = matches['winner'].value_counts().iloc[:20].sort_values()
+        fig = px.bar(y=top_20.index,x=top_20.values,
+        labels={
+            'y':'Count',
+            'x':'Team'
+        })
+        st.plotly_chart(fig,transparent=True,use_container_width=True)
+
+
+
 
         if st.checkbox(label="View Code",key=3):
             st.code(''' 
-fig = plt.figure(figsize=(15,8))
-ax = sns.countplot(y='winner', data=matches_lt,order=matches_lt['winner'].value_counts().index)
-ax.bar_label(ax.containers[0])
-font = {"size":15}
-plt.xticks(rotation='vertical',fontsize=10)
-plt.title("Match Winners",fontdict=font)
-plt.xlabel("Team Name",fontdict=font)
-plt.ylabel("Match Win Count",fontdict=font)
-plt.show();
+top_20 = matches['winner'].value_counts().iloc[:20].sort_values()
+fig = px.bar(y=top_20.index,x=top_20.values,
+labels={
+    'y':'Team',
+    'x':'Count'
+})
+st.plotly_chart(fig,transparent=True,use_container_width=True)
+
+
             ''',language='python')
 
 ##################################################################
 #################### Team With Most Toss Wins ####################
 #################################################################
     with st.expander('5) Team With Most Toss Wins'):
-        fig = plt.figure(figsize=(10,5))
+        # fig = plt.figure(figsize=(10,5))
         
-        plt.rcParams.update({'text.color': "white",'axes.labelcolor': "white",'xtick.color':'white', 'ytick.color':'white'})
+        # plt.rcParams.update({'text.color': "white",'axes.labelcolor': "white",'xtick.color':'white', 'ytick.color':'white'})
         
-        ax = sns.countplot('toss_winner', data=matches_lt,order=matches_lt['toss_winner'].value_counts().index)
-        ax.bar_label(ax.containers[0])
+        # ax = sns.countplot('toss_winner', data=matches_lt,order=matches_lt['toss_winner'].value_counts().index)
+        # ax.bar_label(ax.containers[0])
 
-        font = {"size":10}
-        plt.xticks(rotation='vertical',fontsize=7)
-        plt.title("Toss Winners",fontdict=font)
-        plt.xlabel("Team Name",fontdict=font)
-        plt.ylabel("Toss Winning Count",fontdict=font)
-        st.pyplot(fig,transparent=True)
+        # font = {"size":10}
+        # plt.xticks(rotation='vertical',fontsize=7)
+        # plt.title("Toss Winners",fontdict=font)
+        # plt.xlabel("Team Name",fontdict=font)
+        # plt.ylabel("Toss Winning Count",fontdict=font)
+        # st.pyplot(fig,transparent=True)
+
+        temp = matches_lt['toss_winner'].value_counts()
+        fig = px.bar(x=temp.index,y=temp.values,title='Toss Winners')
+        st.plotly_chart(fig,transparent=True,use_container_width=True)
+
+
 
         if st.checkbox(label="View Code",key=4):
             st.code(''' 
-fig = plt.figure(figsize=(10,5))
-ax = sns.countplot('toss_winner', data=matches_lt,order=matches_lt['toss_winner'].value_counts().index)
-ax.bar_label(ax.containers[0])
 
-font = {"size":10}
-plt.xticks(rotation='vertical',fontsize=7)
-plt.title("Toss Winners",fontdict=font)
-plt.xlabel("Team Name",fontdict=font)
-plt.ylabel("Toss Winning Count",fontdict=font)
-plt.show();
+temp = matches_lt['toss_winner'].value_counts()
+fig = px.bar(x=temp.index,y=temp.values,title='Toss Winners')
+st.plotly_chart(fig,transparent=True,use_container_width=True)
+
         ''',language='python')
     
 #####################################################################
@@ -210,6 +248,11 @@ plt.show();
             st.write('Based On Team Overall Record')
             dt = round((matches_lt[matches_lt['toss_winner']==matches_lt['winner']]['winner'].value_counts()/matches_lt['toss_winner'].value_counts())*100).sort_values(ascending=False)
             st.write(dt)
+        
+        # st.write(db)
+        # fig = px.pie(values=db.values,names=db.index)
+        # st.plotly_chart(fig,transparent=True,use_container_width=True)
+
 
 
 #####################################################################
@@ -320,11 +363,15 @@ plt.show();
 ############################# Overwise Runs for Each Team #############
 #######################################################################
     with st.expander('10) Overwise Average Runs For Each Team Since 2008'):
-        fig = plt.figure(figsize=(10,8))
-        x = deliveries_latest.pivot_table(values='total_runs',index='batting_team',columns='over')*6
-        sns.heatmap(x, cmap='YlGn')
-        plt.title('Overwise Average Runs For Each Team')
-        st.pyplot(fig,transparent=True)
+        # fig = plt.figure(figsize=(10,8))
+        # x = deliveries_latest.pivot_table(values='total_runs',index='batting_team',columns='over')*6
+        # sns.heatmap(x, cmap='YlGn')
+
+        corr = deliveries_latest.pivot_table(values='total_runs',index='batting_team',columns='over')*6
+        fig = px.imshow(corr,color_continuous_scale="ylgn",labels=dict(x="Over", y="Team", color="Runs"), 
+        x=["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"],
+        title='Overwise Average Runs For Each Team')
+        st.plotly_chart(fig,transparent=True,use_container_width=True)
 
 
 ########################################################################
@@ -436,22 +483,30 @@ plt.show();
 ##############################################################################
 
     with st.expander('15) Total Runs Scored in Each Season'):
-        fig = plt.figure(figsize=(10,8))
+        #fig = plt.figure(figsize=(10,8))
         plt.rcParams.update({'text.color': "white",'axes.labelcolor': "white",'xtick.color':'white', 'ytick.color':'white'})
        
         combine_df['Season'] = combine_df['Season'].apply(lambda x:x.split('-')[-1])
         season = combine_df.groupby('Season')['total_runs'].sum().reset_index()
         temp4=season.set_index('Season')
-        ax = sns.relplot(x=temp4.index,y=temp4['total_runs'],kind='line',height=5, aspect=2)
-        plt.title("Total Runs Scored In Each Season",fontsize=16)
-        plt.xticks(fontsize=16)
-        plt.xlabel("IPL Season",fontdict={'size':18})
-        plt.ylabel("Total Runs",fontdict={'size':18})        
-        col00, col01 = st.columns(2)
-        with col00:
-            st.pyplot(ax,transparent=True)
-        with col01:    
-            st.dataframe(temp4,width=500,height=300)
+
+        # ax = sns.relplot(x=temp4.index,y=temp4['total_runs'],kind='line',height=5, aspect=2)
+        # plt.title("Total Runs Scored In Each Season",fontsize=16)
+        # plt.xticks(fontsize=16)
+        # plt.xlabel("IPL Season",fontdict={'size':18})
+        # plt.ylabel("Total Runs",fontdict={'size':18})        
+        # col00, col01 = st.columns(2)
+        # with col00:
+        #     st.pyplot(ax,transparent=True)
+        # with col01:    
+        #     st.dataframe(temp4,width=500,height=300)
+        
+        fig = px.line(data_frame = temp4,x=temp4.index,y='total_runs',
+        title='Total Runs Scored In Each Season')
+        st.plotly_chart(fig,transparent=True,use_container_width=True)
+
+
+
 
 #####################################################################
 ############ Count of Matches By Different Umpires ##################
