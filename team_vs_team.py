@@ -3,6 +3,9 @@ import seaborn as sns
 import streamlit as st
 import pandas as pd
 
+import plotly
+import plotly.express as px
+
 import ipl_eda
 
 
@@ -137,23 +140,34 @@ def app():
         total_del = t1_batting.append(t2_batting)
         
         ####################################################################
-        ####### Batting t1
+        ####### Batting t1 (AVG)
         ####################################################################
         st.write('---')
-        fig = plt.figure(figsize=(10,4))
+        #fig = plt.figure(figsize=(10,4))
         temp = total_del.groupby(['Season','match_id', 'inning','batting_team','bowling_team'])['total_runs'].sum().reset_index()
         temp = temp[temp['inning']<3]
 
         runs = temp[temp.batting_team==t1][['total_runs','Season','match_id','inning']]
 
-        sns.lineplot(data=runs,x='Season',y='total_runs')
-        plt.title(f'{acr_t1} vs {acr_t2} : {acr_t1} Average Total Score',fontsize=10)
-        plt.xlabel(f'Bowling :{t2}')
-        plt.ylabel(f'Runs')
-        st.pyplot(fig,transparent=True)
+        #sns.lineplot(data=runs,x='Season',y='total_runs')
+        #plt.title(f'{acr_t1} vs {acr_t2} : {acr_t1} Average Total Score',fontsize=10)
+        #plt.xlabel(f'Bowling :{t2}')
+        #plt.ylabel(f'Runs')
+        #st.pyplot(px,transparent=True)
+        
+
+        runs_avg = runs.groupby(by='Season').mean().reset_index()
+        fig = px.line(data_frame=runs_avg,x='Season',y='total_runs', 
+               title=f'{acr_t1} vs {acr_t2} : {acr_t1} Average Total Score',
+               labels={
+               'total_runs':"Runs",
+               'Season': f"Bowling :{t2}"}
+               )
+
+        st.plotly_chart(fig,transparent=True,use_container_width=True)
 
         ####################################################################
-        ####### Batting t2
+        ####### Batting t2 (AVG)
         ####################################################################
         st.write('---')    
         fig = plt.figure(figsize=(10,4))
@@ -162,11 +176,21 @@ def app():
 
         runs = temp[temp.batting_team==t2][['total_runs','Season','match_id','inning']]
 
-        sns.lineplot(data=runs,x='Season',y='total_runs')
-        plt.title(f'{acr_t1} vs {acr_t2} :  {acr_t2} Average Total Score',fontsize=10)
-        plt.xlabel(f'Bowling :{t1}')
-        plt.ylabel(f'Runs')
-        st.pyplot(fig,transparent=True)
+        # sns.lineplot(data=runs,x='Season',y='total_runs')
+        # plt.title(f'{acr_t1} vs {acr_t2} :  {acr_t2} Average Total Score',fontsize=10)
+        # plt.xlabel(f'Bowling :{t1}')
+        # plt.ylabel(f'Runs')
+        # st.pyplot(fig,transparent=True)
+
+        runs_avg = runs.groupby(by='Season').mean().reset_index()
+        fig = px.line(data_frame=runs_avg,x='Season',y='total_runs', 
+               title=f'{acr_t1} vs {acr_t2} : {acr_t2} Average Total Score',
+               labels={
+               'total_runs':"Runs",
+               'Season': f"Bowling :{t1}"}
+               )
+
+        st.plotly_chart(fig,transparent=True,use_container_width=True)
         
         ####################################################################
         #### Match Win Based On City
