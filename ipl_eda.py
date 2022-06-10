@@ -247,12 +247,6 @@ st.plotly_chart(fig,transparent=True,use_container_width=True)
             dt = round((matches_lt[matches_lt['toss_winner']==matches_lt['winner']]['winner'].value_counts()/matches_lt['toss_winner'].value_counts())*100).sort_values(ascending=False)
             st.write(dt)
         
-        # st.write(db)
-        # fig = px.pie(values=db.values,names=db.index)
-        # st.plotly_chart(fig,transparent=True,use_container_width=True)
-
-
-
 #####################################################################
 ################### Team Wins Toss and Matches #######################
 #####################################################################
