@@ -20,3 +20,5 @@ def app():
     st.subheader(''' **Find Him On**''')
     st.write(''' [**Medium**](https://abhayparashar31.medium.com/) | [**LinkedIN**](https://www.linkedin.com/in/abhayparashar31/) | [**GitHub**](https://github.com/abhayparashar31/)''')
     st.write('Sayonara !!!')
+    
+    st.info('Note: Open The Web App In Wide Mode For Better View. [Open Drop Down From Top Right > Settings > Check The Wide Mode Checkbox]')
