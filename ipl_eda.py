@@ -1,5 +1,3 @@
-from turtle import title
-import matplotlib.pyplot as plt
 import seaborn as sns
 import streamlit as st
 import pandas as pd
