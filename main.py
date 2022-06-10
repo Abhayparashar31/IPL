@@ -12,13 +12,13 @@ import streamlit as st
 
 PAGES = {
     "HOME":home,
-    "Predict First Innings Score": predict_score,
-    "Predict Winner Probability Based On Second Innings": predict_winner,
     "EDA":ipl_eda,
     "Team vs Team":team_vs_team,
     "Player Analysis":player,
     "Team Analysis":team,
-    "Batsman vs Bowler":bat_vs_bowl
+    "Batsman vs Bowler":bat_vs_bowl,
+    "Predict First Innings Score": predict_score,
+    "Predict Winner Probability Based On Second Innings": predict_winner
 }
 st.sidebar.title('Navigation')
 selection = st.sidebar.radio("Choose One Option", list(PAGES.keys()))
