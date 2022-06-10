@@ -3,6 +3,7 @@ import streamlit as st
 import pandas as pd
 import plotly
 import plotly.express as px
+import matplotlib.pyplot as plt
 
 
 def latest_teams(df,cols):
