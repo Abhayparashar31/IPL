@@ -1,7 +1,7 @@
 # IPL MATCH PREDICTION AND ANALYSIS
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/abhayparashar31/ipl/main/main.py) 
  
- ### Get To Know Your Network Better Today!!
+ ### Get to know about stats of your favourite team and players.
  ![streamlit app gif](ipl/IPL.gif)
 
 
