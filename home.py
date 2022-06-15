@@ -23,4 +23,4 @@ def app():
     st.write(''' \n''')
     
     st.info('''**Note**: Open The Web App In Wide Mode For Better View.
-           To Do So **[Open Drop Down From Top Right > Settings > Check The Wide Mode Checkbox]**''')
+           To Do So **[Open Drop Down From Top Right ➡ Settings ➡ Check The Wide Mode Checkbox]**''')
