@@ -5,8 +5,6 @@ import pandas as pd
 
 import ipl_eda
 
-
-
 def app():
     matches = pd.read_csv('matches.csv')
     matches_lt = ipl_eda.latest_teams(matches,['team1','team2','toss_winner','winner'])
