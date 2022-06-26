@@ -30,7 +30,11 @@ def latest_teams(df,cols):
 
 
 def app():
-    st.markdown(''' <h1 style='text-align:center;'> EXPLORATORY DATA ANALYSIS ON IPL DATA </h1> ''',unsafe_allow_html=True)
+    st.markdown(''' 
+    <center>―――――――――――――――――――――――――――――――――――――――――――――</center>
+    <h1 style='text-align:center;'> EXPLORATORY DATA ANALYSIS ON IPL DATA </h1> 
+    <center>―――――――――――――――――――――――――――――――――――――――――――――</center>
+    ''',unsafe_allow_html=True)
 
     st.subheader('▶️ Sneak Peak of Matches Data')
     matches = pd.read_csv('matches.csv')
