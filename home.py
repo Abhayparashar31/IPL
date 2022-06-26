@@ -1,9 +1,5 @@
 import streamlit as st
 def app():
-    st.set_page_config
-    (
-    layout="centered"
-    )
     st.markdown(
         '''
         # IPL MATCH PREDICTIONS AND ANALYSIS
