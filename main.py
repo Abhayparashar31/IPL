@@ -12,7 +12,7 @@ st.set_page_config(
     page_title = "IPL ANALYSIS",
     page_icon = "🏏",
     initial_sidebar_state='expanded',
-    #layout="wide"
+    layout="wide"
 )
 
 st.markdown(
