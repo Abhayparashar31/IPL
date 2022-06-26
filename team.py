@@ -15,8 +15,14 @@ def app():
 
     combine_df = matches_lt.merge(deliveries_latest,left_on = 'id',right_on = 'match_id',how = 'left')
 
+    st.markdown(''' 
+    <center>―――――――――――――――――――――――――――――――――――――――――――――</center>
+    <h1 style='text-align:center;'> IPL Analysis: Team </h1> 
+    <center>―――――――――――――――――――――――――――――――――――――――――――――</center>
+    <br>
+    ''',unsafe_allow_html=True)
+    
 
-    st.header('IPL Analysis: Team ')
     
     Teams = matches_lt.team1.unique().tolist()
     team = st.selectbox("Choose a Team",Teams)  
