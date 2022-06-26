@@ -1,6 +1,7 @@
 import streamlit as st
 import pickle
 import pandas as pd
+import random
 
 
 def app():
@@ -28,9 +29,9 @@ def app():
     ### Batting Team & Bowling Team
     col1, col2 = st.columns(2)
     with col1:
-        batting_team = st.selectbox('Batting Team At The Moment',random.choices(TEAMS,k = len(TEAMS))) ## randomizing choices
+        batting_team = st.selectbox('Batting Team At The Moment',random.choices(TEAMS, k = len(TEAMS))) ## randomizing choices
     with col2:
-        bowling_team = st.selectbox('Bowling Team At The Moment',random.choices(TEAMS,k = len(TEAMS)))
+        bowling_team = st.selectbox('Bowling Team At The Moment',random.choices(TEAMS, k = len(TEAMS)))
     
     ### Cities
     cities = ['Hyderabad', 'Bangalore', 'Mumbai', 'Indore', 'Kolkata', 'Delhi',
