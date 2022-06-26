@@ -61,6 +61,7 @@ def app():
     <center>―――――――――――――――――――――――――――――――――――――――――――――</center>
     <h1 style='text-align:center;'> IPL Analysis: Team Vs Team </h1> 
     <center>―――――――――――――――――――――――――――――――――――――――――――――</center>
+    <br>
     ''',unsafe_allow_html=True)
 
     Teams = matches_lt.team1.unique().tolist()
