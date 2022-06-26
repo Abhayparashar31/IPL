@@ -1,5 +1,11 @@
 import streamlit as st
 def app():
+    st.set_page_config(
+    page_title = "IPL ANALYSIS",
+    page_icon = "🏏",
+    initial_sidebar_state='expanded',
+    layout="centered"
+    )
     st.markdown(
         '''
         # IPL MATCH PREDICTIONS AND ANALYSIS
