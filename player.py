@@ -15,8 +15,12 @@ def app():
     deliveries = pd.read_csv('deliveries.csv')
     deliveries_latest = ipl_eda.latest_teams(deliveries,['batting_team','bowling_team'])
 
-
-    st.header('IPL Analysis: Player')
+    st.markdown(''' 
+    <center>―――――――――――――――――――――――――――――――――――――――――――――</center>
+    <h1 style='text-align:center;'> IPL Analysis: Player </h1> 
+    <center>―――――――――――――――――――――――――――――――――――――――――――――</center>
+    <br>
+    ''',unsafe_allow_html=True)
 
     Batsman = deliveries['batsman'].unique().tolist()
     Bowler = deliveries['bowler'].unique().tolist()
