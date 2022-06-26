@@ -6,7 +6,13 @@ import pandas as pd
 
 
 def app():
-    st.title(''' IPL FIRST INNINGS SCORE PREDICTION ''')
+
+    st.markdown(''' 
+    <center>―――――――――――――――――――――――――――――――――――――――――――――</center>
+    <h1 style='text-align:center;'> IPL FIRST INNINGS SCORE PREDICTION </h1> 
+    <center>―――――――――――――――――――――――――――――――――――――――――――――</center>
+    <br>
+    ''',unsafe_allow_html=True)
 
     ### Load  Saved Model
     model = pickle.load(open('predict_ipl_1st_innings_score_etr.pkl','rb'))
