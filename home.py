@@ -1,14 +1,17 @@
 import streamlit as st
-def app():
+def app():    
     st.markdown(
         '''
-        # IPL MATCH PREDICTIONS AND ANALYSIS
-        '''
-    )
-    st.image('main_app_IPL_img.jpg')
-    st.markdown(
-        '''
+        <h1 style='text-align:center;'>IPL MATCH PREDICTIONS AND ANALYSIS </h1>
+        <br>
+
+        <center><img src='https://images.newindianexpress.com/uploads/user/imagelibrary/2021/2/20/w1200X800/IPLcup_Twitter.jpg' style="text-align:center; display:block; width:65%"></img> </center>
+
+        <div style='text-align:justified; display:flex; flex-direction:column; width:70%; margin-left:18%;'>
+
         ――――――――――――――――――――――――――――――――――――――――――――――――――
+        
+ 
         ## **IPL** 🏏
         IPL stands for Indian Premier League, a T20 cricket tournament which was originally established in 2008. It is traditionally played from April through to June each year.
 
@@ -19,11 +22,11 @@ def app():
 
 
         Next up is the eliminator where the third and fourth placed sides face off. The winner goes through to the second qualifier while the loser is eliminated. In the second qualifier, the winner of the eliminator takes on the loser of the first playoff match. The winner of that game progresses to the final.
-        '''
-    )
-    st.text('――――――――――――――――――――――――――――――――――――――――――――――――――')
-    st.markdown(
-        '''
+        
+        <br>
+        ――――――――――――――――――――――――――――――――――――――――――――――――――
+        <br>
+
         ## **Teams** 👨‍💼
         * Chennai Super Kings
         * Royal Challengers Bangalore
@@ -33,13 +36,15 @@ def app():
         * Mumbai Indians
         * Rajasthan Royals
         * Kolkata Knight Riders
-        '''
-    )
-    st.text('――――――――――――――――――――――――――――――――――――――――――――――――――')
-    st.markdown(''' ## You Are Interacting With A **Multipurpose Web App** That Can- ''')
-
-    st.markdown(
-        '''
+        
+        <br>
+        
+        ――――――――――――――――――――――――――――――――――――――――――――――――――
+        
+        <br>
+        
+        ## You Are Interacting With A **Multipurpose Web App** That Can- 
+        
         ###### 1. Predict The First Inning Score Based On Current Situation of The Match.
         ###### 2. Provide A Winner Probability For Any Condition of Second Innings of the Match.
         ###### 3. Detailed Exploratory Data Analysis On Dataset.
@@ -47,19 +52,23 @@ def app():
         ###### 5. Player vs Player Analysis.
         ###### 6. Team Past Record Analysis.
         ###### 7. Player Career Analysis As Batsman and Bowler.
-        '''
-    )
+        
+        <br>
+        
+        ――――――――――――――――――――――――――――――――――――――――――――――――――
+        
+        <br>
+        
+        ### ©️ Streamlit Web App Developed By Abhay Parashar
 
-    ## Creator Info
-    st.write(''' \n''')
-    st.text('――――――――――――――――――――――――――――――――――――――――――――――――――')
-    st.subheader(''' ©️ Streamlit Web App Developed By Abhay Parashar ''') 
-    st.subheader(''' **Find Him On**''')
-    st.write(''' [**Medium**](https://abhayparashar31.medium.com/) | [**LinkedIN**](https://www.linkedin.com/in/abhayparashar31/) | [**GitHub**](https://github.com/abhayparashar31/)''')
-    st.write('Sayonara !!!')
-    st.write(''' \n''')
-    
-    st.text('――――――――――――――――――――――――――――――――――――――――――――――――――')
-    
-    st.info('''**Note**: Open The Web App In Wide Mode For Better View of Visualizations.
-           To Do So **[Open Drop Down From Top Right ➡ Settings ➡ Check The Wide Mode Checkbox]**''')
+        #### **Find Him On**
+        
+        [**Medium**](https://abhayparashar31.medium.com/) | [**LinkedIN**](https://www.linkedin.com/in/abhayparashar31/) | [**GitHub**](https://github.com/abhayparashar31/)
+
+        <i>Sayonara !!!</i>
+        
+        <br>
+
+        </div>
+        ''',unsafe_allow_html=True
+    )
