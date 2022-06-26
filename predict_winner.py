@@ -4,7 +4,15 @@ import pandas as pd
 
 
 def app():
-    st.title(''' IPL Winner Prediction Based On Second Innings ''')
+    
+    st.markdown(''' 
+    <center>―――――――――――――――――――――――――――――――――――――――――――――</center>
+    <h1 style='text-align:center;'> IPL Winner Prediction Based On Second Innings </h1> 
+    <center>―――――――――――――――――――――――――――――――――――――――――――――</center>
+    <br>
+    ''',unsafe_allow_html=True)
+    
+
 
     ### Load Saved Model
     model = pickle.load(open('predict_match_winner_2nd_innings.pkl','rb'))
