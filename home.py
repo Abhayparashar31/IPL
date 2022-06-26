@@ -5,7 +5,7 @@ def app():
         <h1 style='text-align:center;'>IPL MATCH PREDICTIONS AND ANALYSIS </h1>
         <br>
 
-        <center><img src='https://images.newindianexpress.com/uploads/user/imagelibrary/2021/2/20/w1200X800/IPLcup_Twitter.jpg' style="text-align:center; display:block; width:65%"></img> </center>
+        <center><img src='https://whiteandblack.in/wp-content/uploads/2021/04/IPL-teams-logo-design-breakdown-scaled.jpg' style="text-align:center; display:block; width:65%"></img> </center>
 
         <div style='text-align:justified; display:flex; flex-direction:column; width:70%; margin-left:18%;'>
 
