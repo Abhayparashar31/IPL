@@ -1,4 +1,5 @@
 import streamlit as st
+import random
 st.set_page_config(layout="wide")
 
 import pickle
@@ -28,9 +29,9 @@ def app():
     ### Batting Team & Bowling Team
     col1, col2 = st.columns(2)
     with col1:
-        batting_team = st.selectbox('Batting Team At The Moment',TEAMS)
+        batting_team = st.selectbox('Batting Team At The Moment',random.choices(TEAMS,k = len(TEAMS))) ## randomizing choices
     with col2:
-        bowling_team = st.selectbox('Bowling Team At The Moment',TEAMS)
+        bowling_team = st.selectbox('Bowling Team At The Moment',random.choices(TEAMS,k = len(TEAMS)))
     
     encoded_batting_team = [1 if batting_team==TEAM else 0 for TEAM in TEAMS]
     encoded_bowling_team = [1 if bowling_team==TEAM else 0 for TEAM in TEAMS]
