@@ -57,8 +57,11 @@ def app():
 
     combine_df = matches_lt.merge(deliveries_latest,left_on = 'id',right_on = 'match_id',how = 'left')
 
-
-    st.header('IPL Analysis: Team Vs Team')
+    st.markdown(''' 
+    <center>―――――――――――――――――――――――――――――――――――――――――――――</center>
+    <h1 style='text-align:center;'> IPL Analysis: Team Vs Team </h1> 
+    <center>―――――――――――――――――――――――――――――――――――――――――――――</center>
+    ''',unsafe_allow_html=True)
 
     Teams = matches_lt.team1.unique().tolist()
 
