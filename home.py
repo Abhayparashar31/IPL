@@ -5,7 +5,7 @@ def app():
         # IPL MATCH PREDICTIONS AND ANALYSIS
         '''
     )
-    st.image('main_app_IPL_img.jpg')
+    st.image('main_app_IPL_img.jpg',use_column_width='always')
     st.markdown(
         '''
         ――――――――――――――――――――――――――――――――――――――――――――――――――
