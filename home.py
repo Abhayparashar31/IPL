@@ -2,7 +2,7 @@ import streamlit as st
 def app():
     st.markdown(
         '''
-        <h1 style='text-align: center; color: white; font-weight:blod;'>IPL MATCH PREDICTIONS AND ANALYSIS</h1>"
+        <h1 style='text-align: center; color: white; font-weight:blod;'>IPL MATCH PREDICTIONS AND ANALYSIS</h1>
         ''', unsafe_allow_html=True
     )
     st.image('main_app_IPL_img.jpg',use_column_width='always')
