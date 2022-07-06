@@ -71,7 +71,7 @@ def app():
         t1 = st.selectbox("Choose Team 1",Teams)    
     with c2:
         t2 = st.selectbox("Choose Team 2",Teams) 
-        
+    
     if t1==t2:
         st.error("Team1 and Team2 Can't Be Same")
     else:
