@@ -31,7 +31,7 @@ def app():
     with col1:
         batting_team = st.selectbox('Batting Team At The Moment',TEAMS)
     with col2:
-        while:
+        while True:
             bowling_team = st.selectbox('Bowling Team At The Moment',TEAMS)
             if bowling_team==batting_team:
                 st.error("Bowling and Batting Team Can't Be Same")
