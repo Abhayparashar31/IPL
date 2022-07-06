@@ -21,7 +21,6 @@ def app():
     TEAMS = ['Chennai Super Kings','Delhi Capitals','Kings XI Punjab',
     'Kolkata Knight Riders','Mumbai Indians','Rajasthan Royals',
     'Royal Challengers Bangalore','Sunrisers Hyderabad']
-    SHUFFLED_TEAMS = random.shuffle(TEAMS)
     ### DATA
     # [bat_team, bowl_team, cities, runs_left, ball_left ,wickets_left,total_runs,crr,rrr]
 
@@ -31,9 +30,9 @@ def app():
     with col1:
         batting_team = st.selectbox('Batting Team At The Moment',TEAMS)
     with col2:
-        bowling_team = st.selectbox('Bowling Team At The Moment',SHUFFLED_TEAMS)
+        bowling_team = st.selectbox('Bowling Team At The Moment',TEAMS)
         
-    if bowling_team==bowling_team:
+    if bowling_team==batting_team:
         st.error("Bowling and Batting Team Can't Be Same")
     else:
         ### Cities
