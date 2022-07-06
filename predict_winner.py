@@ -21,7 +21,7 @@ def app():
     TEAMS = ['Chennai Super Kings','Delhi Capitals','Kings XI Punjab',
     'Kolkata Knight Riders','Mumbai Indians','Rajasthan Royals',
     'Royal Challengers Bangalore','Sunrisers Hyderabad']
-    
+    SHUFFLED_TEAMS = random.shuffle(TEAMS)
     ### DATA
     # [bat_team, bowl_team, cities, runs_left, ball_left ,wickets_left,total_runs,crr,rrr]
 
@@ -31,64 +31,63 @@ def app():
     with col1:
         batting_team = st.selectbox('Batting Team At The Moment',TEAMS)
     with col2:
-        TEAMS = random.shuffle(TEAMS)
         while True:
-            bowling_team = st.selectbox('Bowling Team At The Moment',TEAMS)
+            bowling_team = st.selectbox('Bowling Team At The Moment',SHUFFLED_TEAMS)
             if bowling_team==batting_team:
                 st.error("Bowling and Batting Team Can't Be Same")
             else:
                 break
-    
-    ### Cities
-    cities = ['Hyderabad', 'Bangalore', 'Mumbai', 'Indore', 'Kolkata', 'Delhi',
-       'Chandigarh', 'Jaipur', 'Chennai', 'Cape Town', 'Port Elizabeth',
-       'Durban', 'Centurion', 'East London', 'Johannesburg', 'Kimberley',
-       'Bloemfontein', 'Ahmedabad', 'Cuttack', 'Nagpur', 'Dharamsala',
-       'Visakhapatnam', 'Pune', 'Raipur', 'Ranchi', 'Abu Dhabi',
-       'Sharjah', 'Mohali', 'Bengaluru']
-    
-    city = st.selectbox("Choose The Host City For The Match.",sorted(cities))
+    if bowling_team is not None:
+        ### Cities
+        cities = ['Hyderabad', 'Bangalore', 'Mumbai', 'Indore', 'Kolkata', 'Delhi',
+           'Chandigarh', 'Jaipur', 'Chennai', 'Cape Town', 'Port Elizabeth',
+           'Durban', 'Centurion', 'East London', 'Johannesburg', 'Kimberley',
+           'Bloemfontein', 'Ahmedabad', 'Cuttack', 'Nagpur', 'Dharamsala',
+           'Visakhapatnam', 'Pune', 'Raipur', 'Ranchi', 'Abu Dhabi',
+           'Sharjah', 'Mohali', 'Bengaluru']
 
-    ### Target
-    target = st.number_input('Target Score Need To Chased (First Playing Team Score)',value=156)
+        city = st.selectbox("Choose The Host City For The Match.",sorted(cities))
+
+        ### Target
+        target = st.number_input('Target Score Need To Chased (First Playing Team Score)',value=156)
 
 
-    current_score = st.number_input('Current Score of The Playing Team.',value=100)
+        current_score = st.number_input('Current Score of The Playing Team.',value=100)
 
-    col3, col4 = st.columns(2)
-    with col3:
-        overs_left = st.number_input('Overs Left To Achieve The Target',value=7)
-        overs_completed = 20-overs_left
-    with col4:
-        wickets = st.number_input('Wickets Lost By Playing Team',value=4)
+        col3, col4 = st.columns(2)
+        with col3:
+            overs_left = st.number_input('Overs Left To Achieve The Target',value=7)
+            overs_completed = 20-overs_left
+        with col4:
+            wickets = st.number_input('Wickets Lost By Playing Team',value=4)
 
-    
-    runs_left = target - current_score
-    balls_left = 120 - (overs_completed*6)
-    wickets_left = 10-wickets
 
-    crr = current_score/overs_completed
-    rrr = (runs_left*6)/balls_left
+        runs_left = target - current_score
+        balls_left = 120 - (overs_completed*6)
+        wickets_left = 10-wickets
 
-    data = pd.DataFrame({'batting_team':[batting_team],
-    'bowling_team':[bowling_team],
-    'city':[city],
-    'runs_left':[runs_left],
-    'ball_left':[balls_left],
-    'wickets_left':[wickets_left],
-    'total_runs':[target],
-    'crr':[crr],
-    'rrr':[rrr]})
+        crr = current_score/overs_completed
+        rrr = (runs_left*6)/balls_left
 
-    st.write('---')
-    st.write('Encoded Input Data:',data)
+        data = pd.DataFrame({'batting_team':[batting_team],
+        'bowling_team':[bowling_team],
+        'city':[city],
+        'runs_left':[runs_left],
+        'ball_left':[balls_left],
+        'wickets_left':[wickets_left],
+        'total_runs':[target],
+        'crr':[crr],
+        'rrr':[rrr]})
 
-    if st.button('Predict Winner'):
-        result = model.predict_proba(data)
-        loss = result[0][0]
-        win = result[0][1]
-        st.subheader(batting_team + "- " + str(round(win*100)) + "%")
-        st.subheader(bowling_team + "- " + str(round(loss*100)) + "%")
+        st.write('---')
+        st.write('Encoded Input Data:',data)
+
+        if st.button('Predict Winner'):
+            result = model.predict_proba(data)
+            loss = result[0][0]
+            win = result[0][1]
+            st.subheader(batting_team + "- " + str(round(win*100)) + "%")
+            st.subheader(bowling_team + "- " + str(round(loss*100)) + "%")
 
 
 
