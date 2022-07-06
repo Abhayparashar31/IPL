@@ -29,9 +29,14 @@ def app():
     ### Batting Team & Bowling Team
     col1, col2 = st.columns(2)
     with col1:
-        batting_team = st.selectbox('Batting Team At The Moment',random.choices(TEAMS, k = len(TEAMS))) ## randomizing choices
+        batting_team = st.selectbox('Batting Team At The Moment',TEAMS)
     with col2:
-        bowling_team = st.selectbox('Bowling Team At The Moment',random.choices(TEAMS, k = len(TEAMS)))
+        while:
+            bowling_team = st.selectbox('Bowling Team At The Moment',TEAMS)
+            if bowling_team==batting_team:
+                st.error("Bowling and Batting Team Can't Be Same")
+            else:
+                break
     
     ### Cities
     cities = ['Hyderabad', 'Bangalore', 'Mumbai', 'Indore', 'Kolkata', 'Delhi',
